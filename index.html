@@ -155,12 +155,26 @@
   .worksheet-name:focus { background: #faf6e8; }
 
   .subtitle {
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.34em;
-    text-transform: uppercase;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.01em;
     color: var(--muted);
-    margin-top: -1rem;
+    margin-top: -1.2rem;
+    border: none;
+    outline: none;
+    background: transparent;
+    text-align: center;
+    padding: 0 1rem;
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .subtitle:focus { background: #faf6e8; }
+
+  @media print {
+    .subtitle:focus { background: transparent; }
   }
 
   /* ── FIELDS ── */
@@ -222,8 +236,10 @@
 <body>
 
 <div class="toolbar" aria-label="Cover page controls">
-  <label for="ws-input">Worksheet</label>
-  <input id="ws-input" type="text" value="Circles" placeholder="Enter worksheet name…">
+  <label for="ws-input">Title</label>
+  <input id="ws-input" type="text" value="Circles" placeholder="Enter title…">
+  <label for="sub-input">Subheader</label>
+  <input id="sub-input" type="text" value="Worksheet" placeholder="Enter subheader…">
   <div class="spacer"></div>
   <button type="button" onclick="window.print()">Export PDF / Print</button>
 </div>
@@ -242,7 +258,10 @@
         spellcheck="false"
         id="ws-heading">Circles</h1>
 
-    <div class="subtitle">Worksheet</div>
+    <div class="subtitle"
+         contenteditable="true"
+         spellcheck="false"
+         id="sub-heading">Worksheet</div>
 
     <div class="fields">
       <div class="field">
@@ -262,6 +281,8 @@
 <script>
   const input = document.getElementById('ws-input');
   const heading = document.getElementById('ws-heading');
+  const subInput = document.getElementById('sub-input');
+  const subHeading = document.getElementById('sub-heading');
 
   // toolbar input → heading
   input.addEventListener('input', () => {
@@ -271,6 +292,16 @@
   // inline edit of heading → toolbar input
   heading.addEventListener('input', () => {
     input.value = heading.textContent.trim();
+  });
+
+  // toolbar input → subheader
+  subInput.addEventListener('input', () => {
+    subHeading.textContent = subInput.value || ' ';
+  });
+
+  // inline edit of subheader → toolbar input
+  subHeading.addEventListener('input', () => {
+    subInput.value = subHeading.textContent.trim();
   });
 
   // sync the document title for nicer PDF filename
