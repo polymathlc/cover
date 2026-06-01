@@ -257,6 +257,13 @@
     }
 
     .worksheet-name:focus { background: transparent; }
+
+    /* never show the text caret or focus styling in the export */
+    [contenteditable] {
+      caret-color: transparent;
+      background: transparent !important;
+      outline: none !important;
+    }
   }
 </style>
 </head>
@@ -395,6 +402,16 @@
   // inline edit of footer → toolbar input
   footerText.addEventListener('input', () => {
     footerInput.value = footerText.textContent.trim();
+  });
+
+  // drop focus and selection before printing so the text caret
+  // and selection highlight never appear in the exported PDF
+  window.addEventListener('beforeprint', () => {
+    if (document.activeElement && document.activeElement.blur) {
+      document.activeElement.blur();
+    }
+    const sel = window.getSelection();
+    if (sel) sel.removeAllRanges();
   });
 
   // sync the document title for nicer PDF filename
