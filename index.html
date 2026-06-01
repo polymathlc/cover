@@ -205,6 +205,27 @@
     height: 1.6rem;
   }
 
+  /* ── PAGE DECORATIONS ── */
+  .page-deco {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    font-family: 'DM Sans', sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* keep text and rules above the decorations */
+  .page-header,
+  .page-footer,
+  .center-block {
+    position: relative;
+    z-index: 1;
+  }
+
   /* ── PRINT ── */
   @page {
     size: A4 portrait;
@@ -245,6 +266,55 @@
 </div>
 
 <div class="page" id="page">
+
+  <!-- pastel decorations: circles, shapes & math symbols -->
+  <svg class="page-deco" viewBox="0 0 210 297" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+
+    <!-- top-left cluster (turquoise, hints of pink) -->
+    <circle cx="8" cy="14" r="26" fill="#a5e3dd" opacity="0.5"/>
+    <circle cx="36" cy="6" r="13" fill="#cdf0ec" opacity="0.6"/>
+    <circle cx="6" cy="46" r="9" fill="#7fd6cd" opacity="0.4"/>
+    <circle cx="28" cy="32" r="4.5" fill="#f5c1d6" opacity="0.65"/>
+    <circle cx="52" cy="14" r="3" fill="#a5e3dd" opacity="0.7"/>
+    <polygon points="42,26 52,30 44,38" fill="#bdebe6" opacity="0.8"/>
+    <rect x="14" y="58" width="7" height="7" rx="1" fill="#f9d8e6" transform="rotate(20 17.5 61.5)"/>
+    <text x="40" y="54" font-size="11" font-weight="600" fill="#6cc9c0" opacity="0.75" transform="rotate(-12 40 54)">π</text>
+    <text x="24" y="78" font-size="9" font-weight="500" fill="#eb9bbf" opacity="0.7" transform="rotate(15 24 78)">+</text>
+
+    <!-- bottom-right cluster (pink, hints of turquoise) -->
+    <circle cx="202" cy="284" r="26" fill="#f5c1d6" opacity="0.5"/>
+    <circle cx="174" cy="292" r="13" fill="#fbe0eb" opacity="0.6"/>
+    <circle cx="204" cy="252" r="9" fill="#f0a8c8" opacity="0.4"/>
+    <circle cx="182" cy="266" r="4.5" fill="#a5e3dd" opacity="0.65"/>
+    <circle cx="156" cy="282" r="3" fill="#f5c1d6" opacity="0.7"/>
+    <polygon points="168,268 158,272 166,260" fill="#f9d8e6" opacity="0.8"/>
+    <rect x="190" y="232" width="7" height="7" rx="1" fill="#bdebe6" transform="rotate(-20 193.5 235.5)"/>
+    <text x="158" y="294" font-size="10" font-weight="600" fill="#eb9bbf" opacity="0.75" transform="rotate(10 158 294)">÷</text>
+    <text x="176" y="246" font-size="9" font-weight="500" fill="#6cc9c0" opacity="0.7" transform="rotate(-15 176 246)">×</text>
+
+    <!-- sprinkles: top edge -->
+    <polygon points="150,6 157,8 152,14" fill="#f9d8e6" opacity="0.75"/>
+    <circle cx="180" cy="10" r="4" fill="#bdebe6" opacity="0.6"/>
+    <text x="196" y="28" font-size="7" font-weight="500" fill="#eb9bbf" opacity="0.6" transform="rotate(18 196 28)">×</text>
+    <circle cx="203" cy="44" r="2.5" fill="#f5c1d6" opacity="0.6"/>
+
+    <!-- sprinkles: right edge -->
+    <text x="199" y="120" font-size="8" font-weight="500" fill="#6cc9c0" opacity="0.55" transform="rotate(-10 199 120)">+</text>
+    <circle cx="205" cy="160" r="3.5" fill="#fbe0eb" opacity="0.8"/>
+    <polygon points="202,196 208,199 203,205" fill="#bdebe6" opacity="0.65"/>
+
+    <!-- sprinkles: left edge -->
+    <circle cx="5" cy="120" r="3" fill="#f5c1d6" opacity="0.6"/>
+    <text x="3" y="166" font-size="8" font-weight="600" fill="#6cc9c0" opacity="0.55" transform="rotate(12 3 166)">=</text>
+    <polygon points="6,210 13,213 8,219" fill="#cdf0ec" opacity="0.8"/>
+    <text x="3" y="252" font-size="7" font-weight="500" fill="#eb9bbf" opacity="0.6" transform="rotate(-15 3 252)">%</text>
+
+    <!-- sprinkles: bottom edge -->
+    <circle cx="34" cy="290" r="4" fill="#a5e3dd" opacity="0.55"/>
+    <text x="58" y="294" font-size="8" font-weight="600" fill="#eb9bbf" opacity="0.6" transform="rotate(-8 58 294)">√</text>
+    <circle cx="100" cy="293" r="2.5" fill="#f9d8e6" opacity="0.8"/>
+    <polygon points="124,288 131,290 126,296" fill="#bdebe6" opacity="0.7"/>
+  </svg>
 
   <div class="page-header">Polymath Learning Centre</div>
 
