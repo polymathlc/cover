@@ -116,7 +116,12 @@
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--muted);
+    border: none;
+    outline: none;
+    background: transparent;
   }
+
+  .page-footer:focus { background: #faf6e8; }
 
   /* ── CENTRE BLOCK ── */
   .center-block {
@@ -175,6 +180,7 @@
 
   @media print {
     .subtitle:focus { background: transparent; }
+    .page-footer:focus { background: transparent; }
   }
 
   /* ── FIELDS ── */
@@ -261,6 +267,8 @@
   <input id="ws-input" type="text" value="Circles" placeholder="Enter title…">
   <label for="sub-input">Subheader</label>
   <input id="sub-input" type="text" value="Worksheet" placeholder="Enter subheader…">
+  <label for="footer-input">Footer</label>
+  <input id="footer-input" type="text" value="Primary Mathematics" placeholder="Enter footer…">
   <div class="spacer"></div>
   <button type="button" onclick="window.print()">Export PDF / Print</button>
 </div>
@@ -345,7 +353,10 @@
     </div>
   </div>
 
-  <div class="page-footer">Primary Mathematics</div>
+  <div class="page-footer"
+       contenteditable="true"
+       spellcheck="false"
+       id="footer-text">Primary Mathematics</div>
 </div>
 
 <script>
@@ -353,6 +364,8 @@
   const heading = document.getElementById('ws-heading');
   const subInput = document.getElementById('sub-input');
   const subHeading = document.getElementById('sub-heading');
+  const footerInput = document.getElementById('footer-input');
+  const footerText = document.getElementById('footer-text');
 
   // toolbar input → heading
   input.addEventListener('input', () => {
@@ -372,6 +385,16 @@
   // inline edit of subheader → toolbar input
   subHeading.addEventListener('input', () => {
     subInput.value = subHeading.textContent.trim();
+  });
+
+  // toolbar input → footer
+  footerInput.addEventListener('input', () => {
+    footerText.textContent = footerInput.value || ' ';
+  });
+
+  // inline edit of footer → toolbar input
+  footerText.addEventListener('input', () => {
+    footerInput.value = footerText.textContent.trim();
   });
 
   // sync the document title for nicer PDF filename
